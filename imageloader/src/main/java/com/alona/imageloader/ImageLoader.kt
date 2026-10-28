@@ -111,7 +111,12 @@ class ImageLoader private constructor(
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            Log.w(TAG, "Failed to load ${request.url}", e)
+            // Network, HTTP and decoding failures are expected; only log stack traces for the rest.
+            if (e is IOException) {
+                Log.w(TAG, "Failed to load ${request.url}: ${e.message}")
+            } else {
+                Log.w(TAG, "Failed to load ${request.url}", e)
+            }
             if (isCurrent()) request.error?.let { target.setImageDrawable(it.resolve(target.context)) }
         } finally {
             if (isCurrent()) target.setTag(R.id.imageloader_request, null)

@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Android Developer Test Project</string>
+    <string name="app_name">Image Loader Demo</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="cache_cleared">Cache cleared</string>
+    <string name="retry">Retry</string>
+    <string name="error_loading">Couldn\'t load images</string>
+    <string name="image_id">ID: %1$d</string>
+    <string name="image_description">Image %1$d</string>
 </resources>

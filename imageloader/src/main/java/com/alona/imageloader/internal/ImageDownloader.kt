@@ -17,7 +17,7 @@ internal class ImageDownloader(
             connection.readTimeout = readTimeoutMillis
             connection.instanceFollowRedirects = true
             val code = connection.responseCode
-            if (code !in 200..299) throw IOException("HTTP $code for $url")
+            if (code !in 200..299) throw IOException("HTTP $code")
             return connection.inputStream.use { it.readBytes() }
         } finally {
             connection.disconnect()
