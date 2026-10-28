@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- View tag holding the Job of the request currently bound to an ImageView. -->
+    <item name="imageloader_request" type="id" />
+</resources>
