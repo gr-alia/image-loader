@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Android(Developer Test Project"
+rootProject.name = "AndroidDeveloperTestProject"
 include(":app")
 include(":imageloader")
