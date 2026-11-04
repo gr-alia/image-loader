@@ -23,7 +23,8 @@ class AppContainer(context: Context) {
     }
 
     private companion object {
+        /** Demo data kept in this repository: see sample-data/image_list.json. */
         const val IMAGE_LIST_URL =
-            "https://zipoapps-storage-test.nyc3.digitaloceanspaces.com/image_list.json"
+            "https://raw.githubusercontent.com/gr-alia/image-loader/main/sample-data/image_list.json"
     }
 }
