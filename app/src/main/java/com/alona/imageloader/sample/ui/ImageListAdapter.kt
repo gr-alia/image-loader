@@ -1,12 +1,12 @@
-package com.alona.testproject.ui
+package com.alona.imageloader.sample.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.alona.imageloader.ImageLoader
-import com.alona.testproject.data.ImageItem
-import com.alona.testproject.databinding.ItemImageBinding
+import com.alona.imageloader.sample.data.ImageItem
+import com.alona.imageloader.sample.databinding.ItemImageBinding
 
 class ImageListAdapter(
     private val imageLoader: ImageLoader,

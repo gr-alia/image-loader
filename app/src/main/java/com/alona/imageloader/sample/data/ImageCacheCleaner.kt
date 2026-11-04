@@ -1,4 +1,4 @@
-package com.alona.testproject.data
+package com.alona.imageloader.sample.data
 
 /** Clears the image cache. Abstracts the image loader so the ViewModel stays testable. */
 interface ImageCacheCleaner {

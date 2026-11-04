@@ -1,11 +1,11 @@
-package com.alona.testproject.di
+package com.alona.imageloader.sample.di
 
 import android.content.Context
 import com.alona.imageloader.ImageLoader
-import com.alona.testproject.data.DefaultImageRepository
-import com.alona.testproject.data.ImageCacheCleaner
-import com.alona.testproject.data.ImageListApi
-import com.alona.testproject.data.ImageRepository
+import com.alona.imageloader.sample.data.DefaultImageRepository
+import com.alona.imageloader.sample.data.ImageCacheCleaner
+import com.alona.imageloader.sample.data.ImageListApi
+import com.alona.imageloader.sample.data.ImageRepository
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 

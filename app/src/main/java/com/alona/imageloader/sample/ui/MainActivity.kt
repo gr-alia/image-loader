@@ -1,4 +1,4 @@
-package com.alona.testproject.ui
+package com.alona.imageloader.sample.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -11,9 +11,9 @@ import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.alona.testproject.ImageApp
-import com.alona.testproject.R
-import com.alona.testproject.databinding.ActivityMainBinding
+import com.alona.imageloader.sample.ImageApp
+import com.alona.imageloader.sample.R
+import com.alona.imageloader.sample.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 

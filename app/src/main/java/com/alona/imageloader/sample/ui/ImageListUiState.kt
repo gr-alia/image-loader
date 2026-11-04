@@ -1,6 +1,6 @@
-package com.alona.testproject.ui
+package com.alona.imageloader.sample.ui
 
-import com.alona.testproject.data.ImageItem
+import com.alona.imageloader.sample.data.ImageItem
 
 sealed interface ImageListUiState {
 

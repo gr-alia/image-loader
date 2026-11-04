@@ -1,8 +1,8 @@
-package com.alona.testproject.ui
+package com.alona.imageloader.sample.ui
 
-import com.alona.testproject.data.ImageCacheCleaner
-import com.alona.testproject.data.ImageItem
-import com.alona.testproject.data.ImageRepository
+import com.alona.imageloader.sample.data.ImageCacheCleaner
+import com.alona.imageloader.sample.data.ImageItem
+import com.alona.imageloader.sample.data.ImageRepository
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
