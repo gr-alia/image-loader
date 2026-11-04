@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.alona.testproject"
+    namespace = "com.alona.imageloader.sample"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.alona.testproject"
+        applicationId = "com.alona.imageloader.sample"
         minSdk = 26
         targetSdk = 37
         versionCode = 1

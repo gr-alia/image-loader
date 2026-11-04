@@ -1,4 +1,4 @@
-package com.alona.testproject.data
+package com.alona.imageloader.sample.data
 
 interface ImageRepository {
     suspend fun getImages(): List<ImageItem>

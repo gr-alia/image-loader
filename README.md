@@ -1,25 +1,27 @@
 # Image Loader
 
-An Android image downloading and caching library with **no third-party dependencies** (Kotlin Coroutines, `HttpURLConnection`, memory + disk cache with a 4-hour TTL, manual invalidation), plus a sample app (Android Views, MVVM) that lists images from a remote JSON.
+A lightweight Android image loading and caching library with **no third-party dependencies**: Kotlin Coroutines, `HttpURLConnection`, a two-level memory + disk cache with TTL, and safe cache invalidation. The repository also contains a sample app (Android Views, MVVM) that shows the library in a scrolling list.
 
 <img src="docs/screenshot.png" width="300" alt="Image list with a loaded image and an error placeholder" />
 
-## Requirements checklist
+## Features
 
-| Requirement | Where |
-|---|---|
-| Input: URL, placeholder (resource or `Drawable`), target `ImageView` | `ImageLoader.load(url)` → `ImageRequest.placeholder(...)` → `into(imageView)` |
-| Cached image valid for 4 hours | `DiskCache` TTL, configurable via `ImageLoader.Builder.cacheTtl` |
-| Manual cache invalidation | `ImageLoader.invalidate()` / `invalidate(url)` |
-| Kotlin Coroutines | `ImageLoader` internals; the app's ViewModel and data layer |
-| Java and Kotlin callers | `ImageViewHolder.java` (Java), `ImageView.load(...)` extension (Kotlin) |
-| Fetch JSON, list with image + id | `ImageListApi`, `ImageListAdapter`, `item_image.xml` |
-| Button that invalidates the cache | Toolbar "Clear cache" → `ImageListViewModel.clearCache()` |
-| Android Views, MVVM, Coroutines | `ui/` package: Activity → ViewModel (`StateFlow`) → Repository |
+- **Simple API for Kotlin and Java:** `imageView.load(url) { ... }` in Kotlin, a fluent builder in Java, no `suspend` functions in the public API.
+- **Placeholders and error drawables** from a resource or a `Drawable`.
+- **Two-level cache:** an LRU memory cache of decoded bitmaps and a disk cache of original bytes with a configurable TTL (4 hours by default).
+- **Cache invalidation** for everything or a single URL, safe against downloads that are already in flight.
+- **Downsampling** to the target view size.
+- **Recycling-safe:** a request is cancelled when its view is rebound or recycled, so an image never lands in the wrong cell.
+- **Shared downloads:** concurrent loads of the same URL use a single network request, with at most 4 downloads in parallel.
+
+## Modules
+
+- `imageloader`: the library (`com.alona.imageloader`).
+- `app`: the sample app (`com.alona.imageloader.sample`). It lists images from `sample-data/image_list.json` and has a toolbar action that clears the cache.
 
 ## How to run
 
-Requirements: JDK 17 or newer (the minimum for Gradle 9 and AGP 9.4), Android Studio with AGP 9.4 support, a device or emulator with API 26+.
+You need JDK 17 or newer (the minimum for Gradle 9 and AGP 9.4), Android Studio with AGP 9.4 support, a device or emulator with API 26+.
 
 ```bash
 ./gradlew installDebug          # build and install the sample app
@@ -91,7 +93,7 @@ val loader = ImageLoader.Builder(context)
 7. Decode downsampled to the view size.
 8. Set the bitmap only if the view's tag still points to this request; a late result for a recycled view is dropped. On failure show the error drawable, or keep the placeholder. Failures never crash.
 
-All work runs in one loader scope (`SupervisorJob` + `Main.immediate` + `CoroutineExceptionHandler`). The public API has no `suspend` functions, so it works naturally from Java. Checked on an emulator by fast-scrolling through all 50 items: no image showed up in the wrong cell.
+All work runs in one loader scope (`SupervisorJob` + `Main.immediate` + `CoroutineExceptionHandler`). The public API has no `suspend` functions, so it works naturally from Java. Fast-scrolling through the sample list on an emulator never shows an image in the wrong cell.
 
 ## Caching strategy
 
@@ -124,11 +126,11 @@ All tests run on the JVM (`./gradlew testDebugUnitTest`):
 - `ImageListApiParsingTest`: JSON `imageUrl` → `url` mapping.
 - `ImageListViewModelTest`: Loading / Content / Error states, retry, cache clear bumps `imagesVersion`.
 
-`MemoryCache` and `ImageCache` are generic over the value type, so they're tested with strings instead of real bitmaps. `ImageLoader` itself (views, bitmaps, main thread) and the UI aren't unit-tested. They would need Robolectric or instrumented tests, which were left out of scope; the behaviour was checked manually on an emulator.
+`MemoryCache` and `ImageCache` are generic over the value type, so they're tested with strings instead of real bitmaps. `ImageLoader` itself (views, bitmaps, main thread) and the UI aren't unit-tested. They need Robolectric or instrumented tests (see Future improvements); for now this behaviour is verified manually on an emulator.
 
-## Notes on the data
+## Sample data
 
-The JSON items look like `{ "id": 0, "imageUrl": "..." }`, and `imageUrl` is mapped to `ImageItem.url`. 5 of the 45 unique image URLs return **HTTP 403**, which shows the error drawable. 5 URLs appear twice (for example ids 17 and 18), which exercises in-flight deduplication.
+The sample app loads `sample-data/image_list.json` from this repository. Items look like `{ "id": 0, "imageUrl": "..." }`, and `imageUrl` is mapped to `ImageItem.url`. Images come from [Lorem Picsum](https://picsum.photos). The list deliberately includes a few edge cases: some URLs appear twice in a row, which exercises in-flight deduplication, and two point to missing files, which shows the error drawable.
 
 ## Trade-offs
 

@@ -1,4 +1,4 @@
-package com.alona.testproject.data
+package com.alona.imageloader.sample.data
 
 import kotlinx.serialization.SerializationException
 import org.junit.Assert.assertEquals

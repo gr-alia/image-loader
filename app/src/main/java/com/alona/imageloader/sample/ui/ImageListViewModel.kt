@@ -1,13 +1,13 @@
-package com.alona.testproject.ui
+package com.alona.imageloader.sample.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.alona.testproject.ImageApp
-import com.alona.testproject.data.ImageCacheCleaner
-import com.alona.testproject.data.ImageRepository
+import com.alona.imageloader.sample.ImageApp
+import com.alona.imageloader.sample.data.ImageCacheCleaner
+import com.alona.imageloader.sample.data.ImageRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

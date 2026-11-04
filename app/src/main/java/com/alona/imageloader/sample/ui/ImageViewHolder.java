@@ -1,4 +1,4 @@
-package com.alona.testproject.ui;
+package com.alona.imageloader.sample.ui;
 
 import android.content.Context;
 
@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alona.imageloader.ImageLoader;
-import com.alona.testproject.R;
-import com.alona.testproject.data.ImageItem;
-import com.alona.testproject.databinding.ItemImageBinding;
+import com.alona.imageloader.sample.R;
+import com.alona.imageloader.sample.data.ImageItem;
+import com.alona.imageloader.sample.databinding.ItemImageBinding;
 
 /**
  * Written in Java on purpose, to show that the image loader API works from Java callers.
